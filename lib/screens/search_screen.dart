@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:instagram_clone/screens/profile_screen.dart';
 
 import '../utils/colors.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class SearchScreen extends StatefulWidget {
-  SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({Key? key}) : super(key: key);
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -87,7 +87,19 @@ class _SearchScreenState extends State<SearchScreen> {
                     child: CircularProgressIndicator(),
                   );
                 }
-                return const Center(child: Text(''));
+                return StaggeredGridView.countBuilder(
+                  crossAxisCount: 3,
+                    itemCount: (snapshot.data! as dynamic).docs.length,
+                    itemBuilder: (context, index) =>
+                        Image.network((snapshot.data! as dynamic).docs[index]['postUrl']
+                        ), 
+                        
+                          staggeredTileBuilder:(index)=> StaggeredTile.count(
+                            (index%7 ==0) ?2:1,
+                             (index%7 ==0)?2:1)
+                        
+                        
+                        );
               })),
     );
   }
