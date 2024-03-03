@@ -10,6 +10,8 @@ import 'package:instagram_clone/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class AddPostScreen extends StatefulWidget {
+  const AddPostScreen({super.key});
+
   @override
   State<AddPostScreen> createState() => _AddPostScreenState();
 }
@@ -118,7 +120,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     return _file == null
         ? Container(
             alignment: Alignment.topRight,
-            padding: EdgeInsets.only(top: 50),
+            padding: const EdgeInsets.only(top: 50),
             child: IconButton(
               icon: const Icon(Icons.upload),
               onPressed: () => _selectImage(context),
@@ -187,7 +189,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                         ),
                       ),
                     ),
-                    Divider(),
+                    const Divider(),
                   ],
                 ),
               ],

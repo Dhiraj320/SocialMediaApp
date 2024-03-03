@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/widgets/post_card.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({Key? key}) : super(key: key);
@@ -22,11 +21,11 @@ class FeedScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.add_circle_outline_sharp),
+            icon: const Icon(Icons.add_circle_outline_sharp),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(FontAwesomeIcons.facebookMessenger),
+            icon: const Icon(FontAwesomeIcons.facebookMessenger),
             onPressed: () {},
           ),
         ],

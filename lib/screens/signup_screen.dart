@@ -83,24 +83,24 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
         body: SafeArea(
             child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 32),
+      padding: const EdgeInsets.symmetric(horizontal: 32),
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Flexible(child: Container(), flex: 2),
+          Flexible(flex: 2, child: Container(),),
           //svg image
           SvgPicture.asset('assets/ic_instagram.svg',
               color: primaryColor, height: 64),
 
-          const SizedBox(height: 64),
+          const SizedBox(height: 44),
           //circular widget to acceot show our selected files
           Stack(
             children: [
               _image != null
                   ? CircleAvatar(
                       radius: 64, backgroundImage: MemoryImage(_image!))
-                  : CircleAvatar(
+                  : const CircleAvatar(
                       radius: 64,
                       backgroundImage: NetworkImage(
                           'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'),
@@ -148,11 +148,6 @@ class _SignupScreenState extends State<SignupScreen> {
           InkWell(
             onTap: signUpUser,
             child: Container(
-              child: _isLoading
-                  ? const Center(
-                      child: CircularProgressIndicator(color: primaryColor),
-                    )
-                  : Text('Sign up'),
               width: double.infinity,
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(vertical: 12),
@@ -164,29 +159,34 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 color: blueColor,
               ),
+              child: _isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(color: primaryColor),
+                    )
+                  : const Text('Sign up'),
             ),
           ),
           const SizedBox(height: 12),
-          Flexible(child: Container(), flex: 2),
+          Flexible(flex: 2, child: Container()),
 
           //transition to sign up
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: const Text("Don't have an account? "),
-                padding: EdgeInsets.symmetric(vertical: 8),
               ),
               GestureDetector(
                 onTap: navigateToLogin,
                 child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   child: const Text(
                     "Login",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 8),
                 ),
               ),
             ],

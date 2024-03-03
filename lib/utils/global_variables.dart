@@ -10,9 +10,9 @@ import '../screens/profile_screen.dart';
 const webScreenSize = 600;
 
 List<Widget> homeScreenItems = [
-  FeedScreen(),
-  SearchScreen(),
-  AddPostScreen(),
+  const FeedScreen(),
+  const SearchScreen(),
+  const AddPostScreen(),
   LikePageScreen(),
   ProfileScreen(uid: FirebaseAuth.instance.currentUser!.uid),
 ];

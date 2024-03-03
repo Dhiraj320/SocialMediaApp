@@ -61,7 +61,7 @@ class _CommentCardState extends State<CommentCard> {
               padding: const EdgeInsets.all(8),
               child: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.favorite, color: Colors.red),
+                icon: const Icon(Icons.favorite, color: Colors.red),
               ),
             ),
           ],

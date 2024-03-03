@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:instagram_clone/models/user.dart' as model;
@@ -12,12 +11,10 @@ import 'package:instagram_clone/widgets/like_animation.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/utils.dart';
-
 class PostCard extends StatefulWidget {
   // the power of snap is shown in the snap['username'] and all thing look
   final snap;
-  PostCard({Key? key, required this.snap}) : super(key: key);
+  const PostCard({Key? key, required this.snap}) : super(key: key);
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -40,7 +37,9 @@ class _PostCardState extends State<PostCard> {
           .collection('comments')
           .get();
       commentLen = snap.docs.length;
-    } catch (err) {}
+    } catch (err) {
+      
+    }
     setState(() {});
   }
 
@@ -49,7 +48,7 @@ class _PostCardState extends State<PostCard> {
     final model.User user = Provider.of<UserProvider>(context).getUser;
     return Container(
       color: mobileBackgroundColor,
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: 10,
       ),
       child: Column(
@@ -76,7 +75,7 @@ class _PostCardState extends State<PostCard> {
                         children: [
                           Text(
                             widget.snap['username'],
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -204,16 +203,16 @@ class _PostCardState extends State<PostCard> {
                 DefaultTextStyle(
                   style: Theme.of(context)
                       .textTheme
-                      .subtitle2!
+                      .titleSmall!
                       .copyWith(fontWeight: FontWeight.w800),
                   child: Text(
                     '${widget.snap['likes'].length} likes',
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.only(top: 8),
+                  padding: const EdgeInsets.only(top: 8),
                   child: RichText(
                     text: TextSpan(
                         style: const TextStyle(color: primaryColor),
@@ -237,23 +236,29 @@ class _PostCardState extends State<PostCard> {
                     ),
                   ),
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 4),
+                    padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
                       'View all $commentLen comments',
-                      style: TextStyle(fontSize: 16, color: secondaryColor),
+                      style:
+                          const TextStyle(fontSize: 16, color: secondaryColor),
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 4),
+                  padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
                     // we can not use snp['datePublished'] because it is not string it is timestamp
                     //so we use intl package
                     DateFormat.yMMMd().format(
                       widget.snap['datePublished'].toDate(),
                     ),
-                    style: TextStyle(fontSize: 16, color: secondaryColor),
+                    style: const TextStyle(fontSize: 16, color: secondaryColor),
                   ),
+                ),
+                const Divider(
+                  thickness: 1,
+                    color:Colors.white54
+
                 ),
               ],
             ),
