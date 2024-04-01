@@ -65,6 +65,8 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
               icon: Icon(Icons.home_filled,
                   color: _page == 0 ? primaryColor : secondaryColor),
               label: '',
+            
+
               backgroundColor: primaryColor),
           BottomNavigationBarItem(
               icon: Icon(Icons.search,
@@ -72,17 +74,21 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
               label: '',
               backgroundColor: primaryColor),
           BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.circlePlay,
+              icon: 
+              
+              Icon(Icons.add_to_photos,
                   color: _page == 2 ? primaryColor : secondaryColor),
               label: '',
+
               backgroundColor: primaryColor),
+          // BottomNavigationBarItem(
+          //     icon: Icon(Icons.favorite_border_outlined,
+          //         color: _page == 3 ? primaryColor : secondaryColor),
+          //     label: '',
+          //     backgroundColor: primaryColor),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border_outlined,
-                  color: _page == 3 ? primaryColor : secondaryColor),
-              label: '',
-              backgroundColor: primaryColor),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person,
+              icon: 
+              Icon(Icons.person,
                   color: _page == 4 ? primaryColor : secondaryColor),
               label: '',
               backgroundColor: primaryColor),

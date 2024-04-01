@@ -13,22 +13,13 @@ class FeedScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mobileBackgroundColor,
-        centerTitle: false,
+        centerTitle: true,
         title: SvgPicture.asset(
           'assets/ic_instagram.svg',
           color: primaryColor,
           height: 32,
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add_circle_outline_sharp),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(FontAwesomeIcons.facebookMessenger),
-            onPressed: () {},
-          ),
-        ],
+     
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('posts').snapshots(),

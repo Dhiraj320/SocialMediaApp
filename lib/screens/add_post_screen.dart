@@ -119,10 +119,10 @@ class _AddPostScreenState extends State<AddPostScreen> {
     final User user = Provider.of<UserProvider>(context).getUser;
     return _file == null
         ? Container(
-            alignment: Alignment.topRight,
+            alignment: Alignment.center,
             padding: const EdgeInsets.only(top: 50),
             child: IconButton(
-              icon: const Icon(Icons.upload),
+              icon: const Icon(Icons.upload, size: 50,),
               onPressed: () => _selectImage(context),
             ),
           )
