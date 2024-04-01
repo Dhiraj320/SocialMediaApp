@@ -82,117 +82,121 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-            child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Flexible(flex: 2, child: Container(),),
-          //svg image
-          SvgPicture.asset('assets/ic_instagram.svg',
-              color: primaryColor, height: 64),
-
-          const SizedBox(height: 44),
-          //circular widget to acceot show our selected files
-          Stack(
-            children: [
-              _image != null
-                  ? CircleAvatar(
-                      radius: 64, backgroundImage: MemoryImage(_image!))
-                  : const CircleAvatar(
-                      radius: 64,
-                      backgroundImage: NetworkImage(
-                          'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'),
-                    ),
-              Positioned(
-                bottom: -10,
-                left: 80,
-                child: IconButton(
-                  onPressed: selectImage,
-                  icon: const Icon(Icons.add_a_photo),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          // text field for username
-          TextFieldInput(
-              textEditingController: _usernameController,
-              hintText: 'Enter your username',
-              textInputType: TextInputType.text),
-          const SizedBox(height: 24),
-
-          // text field input for email,
-          TextFieldInput(
-              textEditingController: _emailController,
-              hintText: 'Enter your email',
-              textInputType: TextInputType.emailAddress),
-          const SizedBox(height: 24),
-
-          // text field input for password
-          TextFieldInput(
-            textEditingController: _passwordController,
-            hintText: 'Enter your password',
-            textInputType: TextInputType.text,
-            isPass: true,
-          ),
-          const SizedBox(height: 24),
-          TextFieldInput(
-              textEditingController: _bioController,
-              hintText: 'Enter your bio',
-              textInputType: TextInputType.text),
-
-          const SizedBox(height: 24),
-          // login button
-          InkWell(
-            onTap: signUpUser,
-            child: Container(
+            child: SingleChildScrollView(
+              child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               width: double.infinity,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              decoration: const ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4),
+              child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      //  Flexible(flex: 1, child: Container(),),
+                       const SizedBox(height: 24),
+                      //svg image
+            
+                      SvgPicture.asset('assets/ic_instagram.svg',
+                color: primaryColor, height: 54),
+                    
+                      const SizedBox(height: 44),
+                      //circular widget to acceot show our selected files
+                      Stack(
+              children: [
+                _image != null
+                    ? CircleAvatar(
+                        radius: 54, backgroundImage: MemoryImage(_image!))
+                    : const CircleAvatar(
+                        radius: 54,
+                        backgroundImage: NetworkImage(
+                            'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'),
+                      ),
+                Positioned(
+                  bottom: -10,
+                  left: 68,
+                  child: IconButton(
+                    onPressed: selectImage,
+                    icon: const Icon(Icons.add_a_photo),
                   ),
                 ),
-                color: blueColor,
+              ],
+                      ),
+                      const SizedBox(height: 24),
+                      // text field for username
+                      TextFieldInput(
+                textEditingController: _usernameController,
+                hintText: 'Enter your username',
+                textInputType: TextInputType.text),
+                      const SizedBox(height: 24),
+                    
+                      // text field input for email,
+                      TextFieldInput(
+                textEditingController: _emailController,
+                hintText: 'Enter your email',
+                textInputType: TextInputType.emailAddress),
+                      const SizedBox(height: 24),
+                    
+                      // text field input for password
+                      TextFieldInput(
+              textEditingController: _passwordController,
+              hintText: 'Enter your password',
+              textInputType: TextInputType.text,
+              isPass: true,
+                      ),
+                      const SizedBox(height: 24),
+                      TextFieldInput(
+                textEditingController: _bioController,
+                hintText: 'Enter your bio',
+                textInputType: TextInputType.text),
+                    
+                      const SizedBox(height: 24),
+                      // login button
+                      InkWell(
+              onTap: signUpUser,
+              child: Container(
+                width: double.infinity,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                decoration: const ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(4),
+                    ),
+                  ),
+                  color: blueColor,
+                ),
+                child: _isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(color: primaryColor),
+                      )
+                    : const Text('Sign up'),
               ),
-              child: _isLoading
-                  ? const Center(
-                      child: CircularProgressIndicator(color: primaryColor),
-                    )
-                  : const Text('Sign up'),
-            ),
-          ),
-          const SizedBox(height: 12),
-          Flexible(flex: 2, child: Container()),
-
-          //transition to sign up
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: const Text("Don't have an account? "),
-              ),
-              GestureDetector(
-                onTap: navigateToLogin,
-                child: Container(
+                      ),
+                      const SizedBox(height: 12),
+                      // Flexible(flex: 1, child: Container()),
+                    
+                      //transition to sign up
+                      Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                  child: const Text("Don't have an account? "),
+                ),
+                GestureDetector(
+                  onTap: navigateToLogin,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
+              ],
+                      ),
+                    ],
               ),
-            ],
-          ),
-        ],
-      ),
-    )));
+                      ),
+            )));
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -84,19 +83,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               backgroundColor: mobileBackgroundColor,
               title: Text(userData['username']),
               centerTitle: false,
-
-              actions: [
-
-                IconButton(
-                  icon: const Icon(FontAwesomeIcons.lock),
-                  onPressed: () async {
-                    await AuthMethods().signOut();
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
-                    ));
-                  },
-                )
-              ],
             ),
             body: ListView(
               children: [
@@ -104,27 +90,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     Row(
                       children: [
-                        // _image != null
-                        //     ? CircleAvatar(
-                        //         radius: 40,
-                        //         backgroundImage: MemoryImage(_image!))
-                        //     :
+                       
+                      
                         Padding(
-                          padding: const EdgeInsets.only(left:12.0),
+                          padding: const EdgeInsets.only(left: 12.0),
                           child: CircleAvatar(
                             backgroundColor: Colors.grey,
                             backgroundImage: NetworkImage(userData['photoUrl']),
                             radius: 40,
                           ),
                         ),
-                        // Positioned(
-                        //   bottom: -5,
-                        //   left: 50,
-                        //   child: IconButton(
-                        //     onPressed: selectImage,
-                        //     icon: const Icon(Icons.add_a_photo),
-                        //   ),
-                        // ),
+                     
                         Expanded(
                           child: Column(
                             children: [
@@ -145,12 +121,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   FirebaseAuth.instance.currentUser!.uid ==
                                           widget.uid
                                       ? Followbutton(
-                                          text: 'Edit Profile',
+                                          text: 'Logout',
                                           backgroundColor:
                                               mobileBackgroundColor,
                                           borderColor: Colors.grey,
                                           textColor: primaryColor,
-                                          function: () {})
+                                          function: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) => AlertDialog(
+                                                title: const Text("Logout"),
+                                                content: const Text(
+                                                    "Are You sure you want to log out"),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: const Text("No"),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () async {
+                                                      await AuthMethods()
+                                                          .signOut();
+                                                      Navigator.of(context)
+                                                          .push(
+                                                              MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const LoginScreen(),
+                                                      ));
+                                                    },
+                                                    child: const Text("Yes"),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          })
                                       : isFollowing
                                           ? Followbutton(
                                               text: 'Unfollow',
@@ -195,10 +202,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-
                     Container(
                       alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(top:8 , left: 12),
+                      padding: const EdgeInsets.only(top: 8, left: 12),
                       child: Text(
                         userData['username'],
                         style: const TextStyle(
@@ -208,16 +214,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(top: 4, left:12),
+                      padding: const EdgeInsets.only(top: 4, left: 12),
                       child: Text(
                         userData['bio'],
                       ),
                     ),
                   ],
                 ),
-                const Divider(
-                  color:Colors.white54
-                ),
+                const Divider(color: Colors.white54),
                 FutureBuilder(
                   future: FirebaseFirestore.instance
                       .collection('posts')
